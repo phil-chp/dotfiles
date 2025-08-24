@@ -1,0 +1,38 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 0.97
+padding = { x = 3, y = 5 }
+decorations = "Buttonless"
+blur = false
+
+option_as_alt = "Both"
+
+[font]
+size = 15
+normal = { family = "FiraMono Nerd Font" }
+
+[colors]
+
+transparent_background_colors = true
+
+[colors.primary]
+# background = "#23252e"
+
+[colors.normal]
+black = "#1d1f20"
+
+[colors.bright]
+
+[selection]
+semantic_escape_chars = ",│`|:;\"' ()[]{}<>\t-_"
+
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+
+[keyboard]
+bindings = [
+    { key = "Right", mods = "Alt", chars = "\u001BF" },
+    { key = "Left", mods = "Alt", chars = "\u001BB" }
+]
