@@ -58,7 +58,7 @@ require("mini.pick").setup({
         end,
     }
 });
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
+vim.keymap.set('n', '<leader>e', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 
 require("oil").setup({
@@ -71,7 +71,7 @@ require("oil").setup({
         end,
     }
 })
-vim.keymap.set('n', '<leader>e', ":Oil<CR>")
+vim.keymap.set('n', '<leader>f', ":Oil<CR>")
 
 require("mason").setup()
 require("nvim-treesitter.configs").setup({
