@@ -115,6 +115,7 @@ export PATH="$PATH:/opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/emulator"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # export NVM_DIR="$HOME/.nvm"
 #   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
