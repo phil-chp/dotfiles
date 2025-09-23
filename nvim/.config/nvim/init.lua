@@ -29,7 +29,7 @@ vim.keymap.set('n', '<C-w>J', ':rightbelow split<CR>')
 -- ----------------------------------------------------------- Language specific
 -- Enable wrap for text
 vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = { '*.typ', '*.md' },
+    pattern = { '*.typ', '*.md', '*.txt' },
     group = group,
     command = 'setlocal wrap'
 })
