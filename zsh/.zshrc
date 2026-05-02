@@ -54,9 +54,6 @@ alias cls="c; ls"
 alias o="dolphin"
 alias oo="dolphin . 2>/dev/null"
 
-export BAT_THEME='gruvbox-dark'
-alias bat="bat --style=header,grid,header-filesize"
-
 alias gc="git checkout"
 alias gp="git pull"
 alias gs="git status"
@@ -68,40 +65,18 @@ unalias gaa
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 alias dc="docker compose"
 
-# alias k9sw="k9s --headless -n"
-# alias k9sr="k9s --readonly --headless -n"
-
 # alias e="emacs -nw"
 alias nv="nvim"
 alias vim="nvim"
 alias vi="nvim"
 
-alias smbmap="$HOME/Documents/3Programs/smbmap/smbmap.py"
-alias firmwalker="$HOME/Documents/3Programs/firmwalker/firmwalker.sh"
-alias pngcsum="$HOME/Documents/3Programs/pngcsum/pngcsum"
-alias sherlock="python3 $HOME/Documents/3Programs/sherlock/sherlock"
-alias RsaCtfTool="python3 $HOME/Documents/3Programs/RsaCtfTool/RsaCtfTool.py"
-alias sstimap="python3 $HOME/Documents/3Programs/SSTImap/sstimap.py"
-alias cewl="ruby -W0 ~/Documents/3Programs/CeWL/cewl.rb"
-alias jwt_tool="python3 $HOME/Documents/3Programs/jwt_tool/jwt_tool.py"
-alias @gobusterRec="python3 $HOME/Documents/1Projects/gobusterRec/gobusterRec" # Code is still here though not working anymore
-alias recon-spider="python3 $HOME/Documents/3Programs/ReconSpider/ReconSpider.py"
-alias fzf-wordlist="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
-# alias ghidra="/opt/homebrew/bin/ghidraRun"
+alias fzf-wordlists="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
 
 			 ###########################################
 
 alias @whoami="$HOME/Documents/3Programs/whoami.sh"
 
-alias @docker-cleanup="(docker image prune -f && docker container prune -f && docker volume prune -f) | grep Total"
-
-alias @phpv="sudo update-alternatives --config php"
-
-			 ###########################################
-
 alias @mem="du -hsc * | sort -hr"
-
-alias @list="$HOME/Documents/1Projects/list_files.sh"
 
 #####################################################################
 #                                ENV                                #
@@ -119,7 +94,6 @@ export PATH="$PATH:/opt/metasploit-framework/bin"
 export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 export PATH="$PATH:$HOME/Android/Sdk/emulator"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # eval $(/opt/homebrew/bin/brew shellenv)
 # export PATH="$PATH:$HOME/.pyenv/shims"
@@ -166,9 +140,9 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$PATH:$BUN_INSTALL/bin"
 alias exegol='sudo -E $HOME/.local/bin/exegol'
-alias exegol-start='~/Documents/exegol-start'
+alias exegol-start='$HOME/Documents/exegol-start'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete --no-defaults exegol)"
 
 alias gcc-win="x86_64-w64-mingw32-gcc"
-alias linoffice='/home/phil/.local/bin/linoffice/linoffice.sh'
+alias linoffice='$HOME/.local/bin/linoffice/linoffice.sh'
