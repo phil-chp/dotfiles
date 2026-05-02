@@ -75,7 +75,7 @@ vim.keymap.set('n', '<leader>f', ":Oil<CR>")
 
 require("mason").setup()
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "typst", "markdown", "python", "c", "cpp", "json" },
+    ensure_installed = { "lua", "typst", "markdown", "python", "c", "cpp", "json", "powershell", "sql" },
     sync_install = false,
     auto_install = true,
     ignore_install = {},
@@ -88,7 +88,7 @@ require("nvim-treesitter.configs").setup({
 
 
 -- LSP configs
-vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "pyright", "jsonls", "harper_ls" })
+vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "basedpyright", "jsonls", "harper_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
