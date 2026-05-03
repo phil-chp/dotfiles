@@ -1,6 +1,3 @@
--- Heavily inspired from Vimothée Chalamet's vim12 config video
--- https://www.youtube.com/watch?v=xGkL2N8w0H4
-
 vim.o.number         = true
 vim.o.relativenumber = true
 vim.o.signcolumn     = "yes"
@@ -76,18 +73,13 @@ require('typst-preview').setup({
 
 require("mason").setup()
 
-require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "typst", "markdown", "python", "c", "cpp", "json", "powershell", "sql" },
-    sync_install = false,
-    auto_install = true,
-    ignore_install = {},
-    modules = {},
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
+require("nvim-treesitter").setup()
+require("nvim-treesitter").install({ "lua", "typst", "markdown", "python", "c", "cpp", "json", "powershell", "sql" })
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(event)
+        pcall(vim.treesitter.start, event.buf)
+    end,
 })
-
 
 -- LSP configs
 vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "basedpyright", "jsonls", "harper_ls" })

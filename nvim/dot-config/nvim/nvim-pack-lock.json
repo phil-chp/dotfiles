@@ -1,27 +1,27 @@
 {
   "plugins": {
     "copilot.vim": {
-      "rev": "f3d66c148aa60ad04c0a21d3e0a776459de09eb2",
+      "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
       "src": "https://github.com/github/copilot.vim"
     },
     "gruvbox.nvim": {
-      "rev": "a56f758f9d3eed0b8afbab6ea3ee523887755aed",
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "mason.nvim": {
-      "rev": "7dc4facca9702f95353d5a1f87daf23d78e31c2a",
+      "rev": "cb8445f8ce85d957416c106b780efd51c6298f89",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "nvim-treesitter": {
-      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {
-      "rev": "07f80ad645895af849a597d1cac897059d89b686",
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "typst-preview.nvim": {
-      "rev": "dea4525d5420b7c32eebda7de15a6beb9d6574fa",
+      "rev": "87db18b8d19c8b0eed399f52e4c527ce5afe4817",
       "src": "https://github.com/chomosuke/typst-preview.nvim"
     }
   }
