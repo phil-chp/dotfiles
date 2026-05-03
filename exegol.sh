@@ -16,7 +16,7 @@ if [ ! -d "$MY_RES_PATH/.git" ]; then
     if [ -d "$MY_RES_PATH" ]; then
         rm -rf "$MY_RES_PATH"
     fi
-    git clone https://github.com/phil-chp/Exegol-my-resources "$MY_RES_PATH"
+    git clone --recurse-submodules https://github.com/phil-chp/Exegol-my-resources "$MY_RES_PATH"
 fi
 
 if [ -d "$NVIM_SRC" ]; then
