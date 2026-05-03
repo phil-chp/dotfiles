@@ -72,6 +72,23 @@ require("oil").setup({
     }
 })
 vim.keymap.set('n', '<leader>f', ":Oil<CR>")
+require('typst-preview').setup({
+    get_main_file = function(path)
+        -- On cherche des fichiers racines standards dans le répertoire de travail
+        local root_files = { "main.typ", "cv.typ", "master.typ" }
+        local cwd = vim.fn.getcwd()
+        
+        for _, name in ipairs(root_files) do
+            local fallback = cwd .. "/" .. name
+            if vim.fn.filereadable(fallback) == 1 then
+                return fallback
+            end
+        end
+        
+        -- Si rien n'est trouvé, on utilise le fichier actuel (comportement par défaut)
+        return path
+    end,
+})
 
 require("mason").setup()
 require("nvim-treesitter.configs").setup({

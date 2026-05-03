@@ -72,32 +72,13 @@ alias nv="nvim"
 alias vim="nvim"
 alias vi="nvim"
 
-alias smbmap="$HOME/Documents/3Programs/smbmap/smbmap.py"
-alias firmwalker="$HOME/Documents/3Programs/firmwalker/firmwalker.sh"
-alias pngcsum="$HOME/Documents/3Programs/pngcsum/pngcsum"
-alias sherlock="python3 $HOME/Documents/3Programs/sherlock/sherlock"
-alias RsaCtfTool="python3 $HOME/Documents/3Programs/RsaCtfTool/RsaCtfTool.py"
-alias sstimap="python3 $HOME/Documents/3Programs/SSTImap/sstimap.py"
-alias cewl="ruby -W0 ~/Documents/3Programs/CeWL/cewl.rb"
-alias jwt_tool="python3 $HOME/Documents/3Programs/jwt_tool/jwt_tool.py"
-alias @gobusterRec="python3 $HOME/Documents/1Projects/gobusterRec/gobusterRec" # Code is still here though not working anymore
 alias recon-spider="python3 $HOME/Documents/3Programs/ReconSpider/ReconSpider.py"
 alias fzf-wordlist="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
 alias ghidra="/opt/homebrew/bin/ghidraRun"
 
 			 ###########################################
 
-alias @whoami="$HOME/Documents/3Programs/whoami.sh"
-
-alias @docker-cleanup="(docker image prune -f && docker container prune -f && docker volume prune -f) | grep Total"
-
-alias @phpv="sudo update-alternatives --config php"
-
-			 ###########################################
-
-alias @mem="du -hsc * | sort -hr"
-
-alias @list="$HOME/Documents/1Projects/list_files.sh"
+alias @whoami="$HOME/Documents/whoami.sh"
 
 #####################################################################
 #                                ENV                                #
@@ -165,3 +146,7 @@ export CMAKE_PREFIX_PATH="/opt/homebrew/Cellar:${CMAKE_PREFIX_PATH}"
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$PATH:$BUN_INSTALL/bin"
+autoload -U compinit && compinit
+eval "$(register-python-argcomplete --no-defaults exegol)"
+
+alias exegol-start="/Users/phil/Documents/exegol-start"
