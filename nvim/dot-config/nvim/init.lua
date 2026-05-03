@@ -38,8 +38,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
 vim.pack.add({
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
-    -- { src = "https://github.com/echasnovski/mini.pick" },
-    -- { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
     { src = "https://github.com/github/copilot.vim" },
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -48,19 +46,6 @@ vim.pack.add({
 
 -- Navigation stuff
 local ignore_exts = { class = true, dylib = true, lib = true, o = true, pyo = true }
-
--- require("mini.pick").setup({
---     source = {
---         items = vim.fn.readdir('.'),
---         filter = function(name)
---             if name:match("^%.") ~= nil then return true end
---             local m = name:match("%.([^.]+)$")
---             return m and ignore_exts[m:lower()] or false
---         end,
---     }
--- });
--- vim.keymap.set('n', '<leader>e', ":Pick files<CR>")
--- vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 
 require("oil").setup({
     view_options = {

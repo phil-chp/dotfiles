@@ -1,4 +1,5 @@
 # vim: filetype=sh
+# Customized version of the original "common" theme from oh-my-zsh
 
 # Prompt symbol
 COMMON_PROMPT_SYMBOL="❯"
