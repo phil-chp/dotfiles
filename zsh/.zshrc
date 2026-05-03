@@ -53,6 +53,9 @@ alias fzf-wordlists="fzf --walker-root=$HOME/Documents/SecLists"
 alias @ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias @mem="du -hsc * | sort -hr"
 
+alias gcc-win="x86_64-w64-mingw32-gcc"
+alias linoffice='$HOME/.local/bin/linoffice/linoffice.sh'
+
 #####################################################################
 #                                ENV                                #
 #####################################################################
@@ -83,6 +86,3 @@ alias exegol='sudo -E $HOME/.local/bin/exegol'
 alias exegol-start='$HOME/Documents/exegol-start'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete --no-defaults exegol)"
-
-alias gcc-win="x86_64-w64-mingw32-gcc"
-alias linoffice='$HOME/.local/bin/linoffice/linoffice.sh'

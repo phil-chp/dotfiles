@@ -1,0 +1,96 @@
+#!/bin/bash
+
+BOX_NAME=$1
+
+if [ -z "$BOX_NAME" ]; then
+  echo "Usage: $0 <box-name>"
+  exit 1
+fi
+
+BOX_NAME=$(echo $BOX_NAME | tr ' ' '_' | iconv -f utf-8 -t ascii//TRANSLIT)
+
+PATHS_CHOICES=(
+    "1: Labs"
+    "2: Acedemy"
+    "Or write your own path"
+)
+
+echo "Choose your path (default: 1):"
+for choice in "${PATHS_CHOICES[@]}"; do
+    echo "$choice"
+done
+echo -n '> '
+read -r path_choice
+path_choice=${path_choice:-Machines}
+
+if [ "$path_choice" == "1" ]; then
+  TARGET_PATH="$HOME/HTB/HTB-Labs/Machines"
+elif [ "$path_choice" == "2" ]; then
+  TARGET_PATH="$HOME/HTB/HTB-Academy"
+else
+  TARGET_PATH="$path_choice"
+fi
+
+if [ ! -d "$TARGET_PATH" ]; then
+  echo "The specified path does not exist."
+  exit 1
+fi
+
+cd $TARGET_PATH
+mkdir -p $BOX_NAME/assets
+mkdir -p $BOX_NAME/share
+
+cat << EOF > "$TARGET_PATH/$BOX_NAME/README.md"
+# $BOX_NAME
+
+## Recon
+
+\`\`\`
+IP=
+nmap -Pn -p- -T4 -oG nmap.grep \$IP; nmap -sVC -Pn -p\$(grep -oP '\d+(?=/open)' nmap.grep | paste -sd "," -) \$IP
+
+nmap -sU --min-rate=5000 -p- \$IP
+
+nxc smb "\$IP" -u '' -p '' --generate-hosts-file /etc/hosts
+\`\`\`
+
+## User
+
+EOF
+
+VPN_CHOICES=(
+    "1: Labs"
+    "2: Seasonal"
+    "3: Academy"
+)
+
+echo -e "\nChoose your VPN (default: 2):"
+for choice in "${VPN_CHOICES[@]}"; do
+    echo "$choice"
+done
+echo -n '> '
+read -r vpn_choice
+vpn_choice=${vpn_choice:-2}
+
+if [ "$vpn_choice" == "1" ]; then
+  VPN_PATH="$HOME/Documents/HTB_NedX.ovpn"
+elif [ "$vpn_choice" == "2" ]; then
+  VPN_PATH="$HOME/Documents/HTB_Seasonal_NedX.ovpn"
+elif [ "$vpn_choice" == "3" ]; then
+  VPN_PATH="$HOME/Documents/HTB_Academy_NedX.ovpn"
+fi
+
+if [ ! -f "$VPN_PATH" ]; then
+  echo "The specified VPN file does not exist."
+  exit 1
+fi
+
+CMD="exegol start --vpn '$VPN_PATH' -w '$TARGET_PATH/$BOX_NAME' -V '$HOME/HTB/serve:/serve' -V '$HOME/Downloads:/workspace/Downloads' --update-fs $BOX_NAME free"
+
+echo
+echo $CMD
+echo -e "\nPress Enter to execute the command..."
+read 
+
+eval $CMD
+
