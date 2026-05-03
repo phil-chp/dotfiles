@@ -10,3 +10,7 @@ if [ -d "$NVIM_SRC" ]; then
     mkdir -p "$(dirname "$NVIM_DST")"
     cp -r "$NVIM_SRC" "$NVIM_DST"
 fi
+
+if [ -z "$HOME/Documents/exegol-start" ]; then
+    cp "$DOTFILES_DIR/exegol-start" "$HOME/Documents/exegol-start"
+fi

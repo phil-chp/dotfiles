@@ -10,10 +10,25 @@ fi
 
 git submodule update --init --recursive --remote
 
+OS="$(uname -s)"
+
 for dir in */ ; do
-    if [[ -d "$dir" && "$dir" != .* ]]; then
-        stow -t ~ --dotfiles "${dir%/}"
+    d="${dir%/}"
+    if [[ "$d" == *-mac && "$OS" != "Darwin" ]]; then
+        continue
+    fi
+    if [[ "$d" == *-linux && "$OS" != "Linux" ]]; then
+        continue
+    fi
+
+    if [[ -d "$d" && "$d" != .* ]]; then
+        echo "- Stowing $d..."
+        stow -t ~ --dotfiles "$d"
     fi
 done
 
-nvim --headless "+TSUpdateSync" +qa
+if command -v nvim &> /dev/null; then
+    nvim --headless "+TSUpdateSync" +qa
+else
+    echo "Neovim is not installed. Please install v0.12 or later."
+fi
