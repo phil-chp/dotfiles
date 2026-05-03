@@ -48,7 +48,7 @@ alias nv="nvim"
 alias vim="nvim"
 alias vi="nvim"
 
-alias fzf-wordlists="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
+alias fzf-wordlists="fzf --walker-root=$HOME/Documents/SecLists"
 
 alias @ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias @mem="du -hsc * | sort -hr"
