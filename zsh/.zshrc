@@ -8,22 +8,26 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-function cat() {
-    for file in "$@"; do
-        if [ -f "$file" ]; then
-            SIZE=$(wc -c < "$file")
-            if [[ $SIZE -gt 500000 ]]; then
-                echo -e "File $file is very large ($SIZE bytes).\nAre you sure you want to proceed? (y/N)"
-                read answer
-                if [[ $answer != "Y" && $answer != "y" ]]; then
-                    echo "Aborted."
-                    return
-                fi
-            fi
-        fi
-    done
-    command cat "$@"
-}
+# function cat() {
+#     if [[ " $* " == *" -y "* ]]; then
+#         command cat "${@/-y/}"
+#         return
+#     fi
+#     for file in "$@"; do
+#         if [ -f "$file" ]; then
+#             SIZE=$(wc -c < "$file")
+#             if [[ $SIZE -gt 500000 ]]; then
+#                 echo -e "File $file is very large ($SIZE bytes).\nAre you sure you want to proceed? (y/N)"
+#                 read answer
+#                 if [[ $answer != "Y" && $answer != "y" ]]; then
+#                     echo "Aborted."
+#                     return
+#                 fi
+#             fi
+#         fi
+#     done
+#     command cat "$@"
+# }
 
 function leaks() {
  export MallocStackLogging=1
@@ -47,11 +51,8 @@ alias pip="pip3"
 alias c="printf '\e[2J\e[3J\e[H'"
 alias cls="c; ls"
 
-alias o="open"
-alias oo="open ."
-
-export BAT_THEME='gruvbox-dark'
-alias bat="bat --style=header,grid,header-filesize"
+alias o="dolphin"
+alias oo="dolphin . 2>/dev/null"
 
 alias gc="git checkout"
 alias gp="git pull"
@@ -64,70 +65,43 @@ unalias gaa
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 alias dc="docker compose"
 
-# alias k9sw="k9s --headless -n"
-# alias k9sr="k9s --readonly --headless -n"
-
 # alias e="emacs -nw"
 alias nv="nvim"
 alias vim="nvim"
 alias vi="nvim"
 
-alias smbmap="$HOME/Documents/3Programs/smbmap/smbmap.py"
-alias firmwalker="$HOME/Documents/3Programs/firmwalker/firmwalker.sh"
-alias pngcsum="$HOME/Documents/3Programs/pngcsum/pngcsum"
-alias sherlock="python3 $HOME/Documents/3Programs/sherlock/sherlock"
-alias RsaCtfTool="python3 $HOME/Documents/3Programs/RsaCtfTool/RsaCtfTool.py"
-alias sstimap="python3 $HOME/Documents/3Programs/SSTImap/sstimap.py"
-alias cewl="ruby -W0 ~/Documents/3Programs/CeWL/cewl.rb"
-alias jwt_tool="python3 $HOME/Documents/3Programs/jwt_tool/jwt_tool.py"
-alias @gobusterRec="python3 $HOME/Documents/1Projects/gobusterRec/gobusterRec" # Code is still here though not working anymore
-alias recon-spider="python3 $HOME/Documents/3Programs/ReconSpider/ReconSpider.py"
-alias fzf-wordlist="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
-alias ghidra="/opt/homebrew/bin/ghidraRun"
+alias fzf-wordlists="fzf --walker-root=$HOME/Documents/3Programs/SecLists"
 
 			 ###########################################
 
 alias @whoami="$HOME/Documents/3Programs/whoami.sh"
 
-alias @docker-cleanup="(docker image prune -f && docker container prune -f && docker volume prune -f) | grep Total"
-
-alias @phpv="sudo update-alternatives --config php"
-
-			 ###########################################
-
 alias @mem="du -hsc * | sort -hr"
-
-alias @list="$HOME/Documents/1Projects/list_files.sh"
 
 #####################################################################
 #                                ENV                                #
 #####################################################################
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+# export PATH="/opt/homebrew/bin:$PATH"
+# export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$PATH:/opt/metasploit-framework/bin"
 # export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$PATH:/opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john"
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-export PATH="$PATH:$HOME/Library/Android/sdk/emulator"
+# export PATH="$PATH:/opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john"
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+export PATH="$PATH:$HOME/Android/Sdk/emulator"
 export PATH="$PATH:$HOME/.local/bin"
 
-# export NVM_DIR="$HOME/.nvm"
-#   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-#   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-# source ~/.nvm/nvm.sh
+# eval $(/opt/homebrew/bin/brew shellenv)
+# export PATH="$PATH:$HOME/.pyenv/shims"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
-eval $(/opt/homebrew/bin/brew shellenv)
-export PATH="$PATH:$HOME/.pyenv/shims"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export CMAKE_PREFIX_PATH="/opt/homebrew/Cellar:${CMAKE_PREFIX_PATH}"
+# export CMAKE_PREFIX_PATH="/opt/homebrew/Cellar:${CMAKE_PREFIX_PATH}"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -165,3 +139,10 @@ export CMAKE_PREFIX_PATH="/opt/homebrew/Cellar:${CMAKE_PREFIX_PATH}"
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$PATH:$BUN_INSTALL/bin"
+alias exegol='sudo -E $HOME/.local/bin/exegol'
+alias exegol-start='$HOME/Documents/exegol-start'
+autoload -U compinit && compinit
+eval "$(register-python-argcomplete --no-defaults exegol)"
+
+alias gcc-win="x86_64-w64-mingw32-gcc"
+alias linoffice='$HOME/.local/bin/linoffice/linoffice.sh'

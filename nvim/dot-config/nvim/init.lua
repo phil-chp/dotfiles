@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 vim.pack.add({
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/echasnovski/mini.pick" },
+    -- { src = "https://github.com/echasnovski/mini.pick" },
     -- { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
     { src = "https://github.com/github/copilot.vim" },
@@ -48,18 +48,19 @@ vim.pack.add({
 
 -- Navigation stuff
 local ignore_exts = { class = true, dylib = true, lib = true, o = true, pyo = true }
-require("mini.pick").setup({
-    source = {
-        items = vim.fn.readdir('.'),
-        filter = function(name)
-            if name:match("^%.") ~= nil then return true end
-            local m = name:match("%.([^.]+)$")
-            return m and ignore_exts[m:lower()] or false
-        end,
-    }
-});
-vim.keymap.set('n', '<leader>e', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
+
+-- require("mini.pick").setup({
+--     source = {
+--         items = vim.fn.readdir('.'),
+--         filter = function(name)
+--             if name:match("^%.") ~= nil then return true end
+--             local m = name:match("%.([^.]+)$")
+--             return m and ignore_exts[m:lower()] or false
+--         end,
+--     }
+-- });
+-- vim.keymap.set('n', '<leader>e', ":Pick files<CR>")
+-- vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 
 require("oil").setup({
     view_options = {
@@ -74,8 +75,9 @@ require("oil").setup({
 vim.keymap.set('n', '<leader>f', ":Oil<CR>")
 
 require("mason").setup()
+
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "typst", "markdown", "python", "c", "cpp", "json" },
+    ensure_installed = { "lua", "typst", "markdown", "python", "c", "cpp", "json", "powershell", "sql" },
     sync_install = false,
     auto_install = true,
     ignore_install = {},
@@ -88,7 +90,7 @@ require("nvim-treesitter.configs").setup({
 
 
 -- LSP configs
-vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "pyright", "jsonls", "harper_ls" })
+vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "basedpyright", "jsonls", "harper_ls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
