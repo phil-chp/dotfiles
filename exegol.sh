@@ -9,7 +9,7 @@ fi
 DOTFILES_DIR="$(dirname "$0")"
 MY_RES_PATH="$HOME/.exegol/my-resources"
 NVIM_SRC="$DOTFILES_DIR/nvim/dot-config/nvim"
-NVIM_DST="$HOME/setup/nvim"
+NVIM_DST="$MY_RES_PATH/setup/nvim"
 
 if [ ! -d "$MY_RES_PATH/.git" ]; then
     echo "[*] Cloning my-resources repo..."
@@ -20,9 +20,9 @@ if [ ! -d "$MY_RES_PATH/.git" ]; then
 fi
 
 if [ -d "$NVIM_SRC" ]; then
-    mkdir -p "$(dirname "$NVIM_DST")"
+    mkdir -p $(dirname "$NVIM_DST")
     rm -rf "$NVIM_DST"
-    cp -r "$NVIM_SRC" "$NVIM_DST" # copy instead of symlink to avoid container issues
+    cp -r "$NVIM_SRC" "$NVIM_DST" # copy instead of symlink to avoid mount issues
 fi
 
 if [ ! -f "$HOME/Documents/exegol-start" ]; then

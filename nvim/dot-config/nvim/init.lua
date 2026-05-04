@@ -74,12 +74,13 @@ require('typst-preview').setup({
 require("mason").setup()
 
 require("nvim-treesitter").setup()
-require("nvim-treesitter").install({ "lua", "typst", "markdown", "python", "c", "cpp", "json", "powershell", "sql" })
+require("nvim-treesitter").install({ "lua", "typst", "markdown", "markdown_inline", "bash", "python", "c", "cpp", "json", "powershell", "sql" })
 vim.api.nvim_create_autocmd('FileType', {
     callback = function(event)
         pcall(vim.treesitter.start, event.buf)
     end,
 })
+vim.treesitter.language.register('bash', 'sh')
 
 -- LSP configs
 vim.lsp.enable({ "lua_ls", "tinymist", "clangd", "basedpyright", "jsonls", "harper_ls" })
