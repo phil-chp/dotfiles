@@ -30,8 +30,8 @@ alias pip="pip3"
 alias c="printf '\e[2J\e[3J\e[H'"
 alias cls="c; ls"
 
-alias o="dolphin"
-alias oo="dolphin . 2>/dev/null"
+alias o="open"
+alias oo="open . 2>/dev/null"
 
 alias gc="git checkout"
 alias gp="git pull"
