@@ -6,7 +6,7 @@ if ! command -v exegol >/dev/null 2>&1; then
     exit 0
 fi
 
-DOTFILES_DIR="$(dirname "$0")"
+DOTFILES_DIR="$(realpath "$(dirname "$0")")"
 MY_RES_PATH="$HOME/.exegol/my-resources"
 NVIM_SRC="$DOTFILES_DIR/nvim/dot-config/nvim"
 NVIM_DST="$MY_RES_PATH/setup/nvim"
@@ -26,8 +26,7 @@ if [ -d "$NVIM_SRC" ]; then
 fi
 
 if [ ! -f "$HOME/Documents/exegol-start" ]; then
-    cp "$DOTFILES_DIR/exegol-start" "$HOME/Documents/exegol-start"
-    chmod +x "$HOME/Documents/exegol-start"
+    ln -s "$DOTFILES_DIR/exegol-start" "$HOME/Documents/exegol-start"
 fi
 
 echo "[+] Exegol environment ready"
