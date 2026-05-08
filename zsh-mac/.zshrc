@@ -73,13 +73,12 @@ export PATH="$PATH:$HOME/.local/bin"
 #####################################################################
 
 eval $(/opt/homebrew/bin/brew shellenv)
-# export PATH="$PATH:$HOME/.pyenv/shims"
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+export PATH="$PATH:$HOME/.pyenv/shims"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 # export CMAKE_PREFIX_PATH="/opt/homebrew/Cellar:${CMAKE_PREFIX_PATH}"
 
-alias exegol='sudo -E $HOME/.local/bin/exegol'
 alias exegol-start='$HOME/Documents/exegol-start'
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete --no-defaults exegol)"
