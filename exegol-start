@@ -79,7 +79,7 @@ PATH_CHOICE=${PATH_CHOICE:-1}
 
 case $PATH_CHOICE in
     1) TARGET_PATH="$HOME/HTB/HTB-Labs/Machines" ;;
-    2) TARGET_PATH="$HOME/HTB/HTB-Academy" ;;
+    2) TARGET_PATH="$HOME/HTB/HTB-Academy/Exegol" ;;
     3) TARGET_PATH="$HOME/HTB/HTB-Labs/Sherlocks" ;;
     *) TARGET_PATH="$PATH_CHOICE" ;;
 esac
