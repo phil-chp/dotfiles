@@ -12,22 +12,20 @@ offsec_readme() {
 	category: []
 	---
 	# $1
-	
-	## Recon
-	
+
 	\`\`\`bash
 	IP=
-	nmap -Pn -p- -T4 -vv -oG nmap.grep \$IP; nmap -sVC -Pn -p\$(grep -oP '\d+(?=/open)' nmap.grep | paste -sd "," -) \$IP; 
-	
+	nmap -Pn -p- -T4 -vv -oG nmap.grep \$IP; nmap -sVC -Pn -p\$(grep -oP '\d+(?=/open)' nmap.grep | paste -sd "," -) \$IP;
+
 	nmap -sU --min-rate=5000 -p- \$IP
-	
+
 	nxc smb "\$IP" -u '' -p '' --generate-hosts-file /tmp/hosts; cat /tmp/hosts >> /etc/hosts
 	\`\`\`
-	
-	## Service Enumeration
-	
-	### 
-	
+
+	## User
+
+	###
+
 	EOF
 }
 
@@ -43,17 +41,17 @@ defsec_readme() {
 	category: []
 	---
 	# $1
-	
+
 	## Scenario
-	
-	
-	
+
+
+
 	We are provided with TODO, it contains:
-	
+
 	## Tasks
-	
-	### 
-	
+
+	###
+
 	EOF
 }
 
@@ -67,24 +65,23 @@ fi
 BOX_NAME=$(echo $BOX_NAME | tr ' ' '_' | iconv -f utf-8 -t ascii//TRANSLIT)
 
 PATHS_CHOICES=(
-    "1: Labs"
-    "2: Sherlocks"
-    "3: Acedemy"
+    "1: Machines (Labs)"
+    "2: Acedemy"
+    "3: Sherlocks (Labs)"
     "Or write your own (absolute) path"
 )
-
 echo "Choose your path (default: 1):"
 for choice in "${PATHS_CHOICES[@]}"; do
     echo "$choice"
 done
-read -p "> " path_choice
-path_choice=${path_choice:-1}
+read -p "> " PATH_CHOICE
+PATH_CHOICE=${PATH_CHOICE:-1}
 
-case $path_choice in
+case $PATH_CHOICE in
     1) TARGET_PATH="$HOME/HTB/HTB-Labs/Machines" ;;
-    2) TARGET_PATH="$HOME/HTB/HTB-Labs/Sherlocks" ;;
-    3) TARGET_PATH="$HOME/HTB/HTB-Academy" ;;
-    *) TARGET_PATH="$path_choice" ;;
+    2) TARGET_PATH="$HOME/HTB/HTB-Academy" ;;
+    3) TARGET_PATH="$HOME/HTB/HTB-Labs/Sherlocks" ;;
+    *) TARGET_PATH="$PATH_CHOICE" ;;
 esac
 
 if [ ! -d "$TARGET_PATH" ]; then
@@ -107,40 +104,39 @@ if [[ "$TARGET_PATH" != *"Sherlocks"* ]]; then
         "2: Academy"
         "3: Release Arena"
         # "4: VIP"
+        # "5: Enterprise"
     )
-    
+
     echo "Choose your VPN (default: 2):"
     for choice in "${VPN_CHOICES[@]}"; do
         echo "$choice"
     done
-    read -p "> " vpn_choice
-    vpn_choice=${vpn_choice:-2}
-    
-    if [ "$vpn_choice" == "1" ]; then
-      VPN_PATH="$HOME/Documents/HTB_NedX.ovpn"
-    elif [ "$vpn_choice" == "2" ]; then
-      VPN_PATH="$HOME/Documents/HTB_Academy_NedX.ovpn"
-    elif [ "$vpn_choice" == "3" ]; then
-      VPN_PATH="$HOME/Documents/HTB_Release_Arena_NedX.ovpn"
-    # elif [ "$vpn_choice" == "4" ]; then
-    #   VPN_PATH="$HOME/Documents/HTB_VIP_NedX.ovpn"
-    fi
-    
+    read -p "> " VPN_CHOICE
+    VPN_CHOICE=${VPN_CHOICE:-2}
+
+    case $VPN_CHOICE in
+        1) VPN_PATH="$HOME/Documents/HTB_NedX.ovpn" ;;
+        2) VPN_PATH="$HOME/Documents/HTB_Academy_NedX.ovpn" ;;
+        3) VPN_PATH="$HOME/Documents/HTB_Release_Arena_NedX.ovpn" ;;
+        # 4) VPN_PATH="$HOME/Documents/HTB_VIP_NedX.ovpn" ;;
+        *) VPN_PATH="$VPN_CHOICE" ;;
+    esac
+
     if [ ! -f "$VPN_PATH" ]; then
       echo "The specified VPN file does not exist."
       exit 1
     fi
-    
+
     CMD="exegol start --vpn \"$VPN_PATH\" -w \"$TARGET_PATH/$BOX_NAME\" -V \"$HOME/Downloads:/workspace/Downloads\" --update-fs $BOX_NAME free"
 else
     if [ ! -f "$TARGET_PATH/$BOX_NAME/README.md" ]; then
         defsec_readme "$BOX_NAME" > "$TARGET_PATH/$BOX_NAME/README.md"
     fi
 
-    # --update-fs ?????????
+    # TODO: DFIR challenges using --update-fs is stupid, though gotta check if mounting vhdx files without --update-fs works.
     CMD="exegol start -w \"$TARGET_PATH/$BOX_NAME\" -V \"$HOME/Downloads:/workspace/Downloads\" --update-fs $BOX_NAME free"
 fi
 
 echo $CMD
-read -p "Press [Enter] to start the box..."
+read -p "Press [Enter] to start the box, or [CTRL+C] to abandon..."
 eval $CMD
