@@ -95,7 +95,7 @@ mkdir -p $BOX_NAME/assets
 if [[ "$TARGET_PATH" != *"Sherlocks"* ]]; then
     mkdir -p $BOX_NAME/share
 
-    if [ ! -f "$TARGET_PATH/$BOX_NAME/README.md" ]; then
+    if [ ! -f "$TARGET_PATH/$BOX_NAME/index.md" ]; then
         offsec_readme "$BOX_NAME" > "$TARGET_PATH/$BOX_NAME/index.md"
     fi
 
@@ -129,7 +129,7 @@ if [[ "$TARGET_PATH" != *"Sherlocks"* ]]; then
 
     CMD="exegol start --vpn \"$VPN_PATH\" -w \"$TARGET_PATH/$BOX_NAME\" -V \"$HOME/Downloads:/workspace/Downloads\" --update-fs $BOX_NAME free --disable-shared-timezone"
 else
-    if [ ! -f "$TARGET_PATH/$BOX_NAME/README.md" ]; then
+    if [ ! -f "$TARGET_PATH/$BOX_NAME/index.md" ]; then
         defsec_readme "$BOX_NAME" > "$TARGET_PATH/$BOX_NAME/index.md"
     fi
 
